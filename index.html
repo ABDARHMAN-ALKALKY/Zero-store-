@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZERO STORE</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #1e293b;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    header img {
+      max-height: 100px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin: 0.5rem 0 0;
+    }
+    p {
+      margin: 0.3rem 0 0;
+    }
+    .btn-container {
+      margin: 2rem 0;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    button {
+      padding: 0.8rem 1.5rem;
+      background-color: #3b82f6;
+      border: none;
+      border-radius: 0.5rem;
+      color: white;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #2563eb;
+    }
+    .form-section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      max-width: 420px;
+      background: #1e293b;
+      padding: 1rem 1.5rem;
+      border-radius: 0.7rem;
+      box-shadow: 0 0 15px rgba(59,130,246,0.5);
+      margin-bottom: 3rem;
+    }
+    .form-section.active {
+      display: flex;
+    }
+    label {
+      align-self: flex-start;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.3rem;
+      border: none;
+      border-radius: 0.4rem;
+      font-size: 1rem;
+      background-color: #334155;
+      color: white;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #94a3b8;
+    }
+    a.whatsapp {
+      margin-top: 1.5rem;
+      background-color: #10b981;
+      padding: 0.9rem;
+      text-decoration: none;
+      color: white;
+      border-radius: 0.6rem;
+      display: inline-block;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 5px 10px rgba(16,185,129,0.7);
+      transition: background-color 0.3s;
+    }
+    a.whatsapp:hover {
+      background-color: #0f766e;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ZERO STORE Logo" />
+    <h1>ZERO STORE</h1>
+    <p>🌀 خدمتك بسرعة الصفر في شحن الألعاب والسوشيال ميديا 🔥</p>
+  </header>
+
+  <div class="btn-container">
+    <button onclick="showSection('games')">🎮 قسم الألعاب</button>
+    <button onclick="showSection('social')">📱 قسم السوشيال ميديا</button>
+  </div>
+
+  <div id="games" class="form-section">
+    <label for="game-name">اختر اللعبة:</label>
+    <input type="text" id="game-name" placeholder="مثلاً: PUBG Mobile" />
+
+    <label for="game-amount">عدد الشحنات:</label>
+    <input type="text" id="game-amount" placeholder="مثلاً: 60 شدة" />
+
+    <label for="game-notes">ملاحظات (اختياري):</label>
+    <textarea id="game-notes" rows="3" placeholder="مثلاً: ايدي الحساب، أو وقت التنفيذ"></textarea>
+
+    <a class="whatsapp" id="game-submit" target="_blank">📩 إرسال الطلب عبر واتساب</a>
+  </div>
+
+  <div id="social" class="form-section">
+    <label for="social-app">اسم التطبيق:</label>
+    <input type="text" id="social-app" placeholder="مثلاً: TikTok أو Instagram" />
+
+    <label for="social-service">نوع الخدمة:</label>
+    <input type="text" id="social-service" placeholder="مثلاً: متابعين، لايكات، مشاهدات..." />
+
+    <label for="social-amount">العدد المطلوب:</label>
+    <input type="text" id="social-amount" placeholder="مثلاً: 1000 متابع" />
+
+    <label for="social-notes">ملاحظات (اختياري):</label>
+    <textarea id="social-notes" rows="3" placeholder="مثلاً: رابط الحساب أو اسم المستخدم"></textarea>
+
+    <a class="whatsapp" id="social-submit" target="_blank">📩 إرسال الطلب عبر واتساب</a>
+  </div>
+
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    document.getElementById('game-submit').addEventListener('click', () => {
+      const name = document.getElementById('game-name').value.trim() || "لا يوجد";
+      const amount = document.getElementById('game-amount').value.trim() || "لا يوجد";
+      const notes = document.getElementById('game-notes').value.trim() || "لا يوجد";
+
+      const msg = `🕹️ طلب شحن لعبة من ZERO STORE 🕹️
+
+🎮 اللعبة: ${name}
+⚡ الكمية المطلوبة: ${amount}
+📝 ملاحظات: ${notes}
+
+🛒 شكراً لاختيارك ZERO STORE لخدمات الشحن السريعة!`;
+
+      window.open(`https://wa.me/218921571649?text=${encodeURIComponent(msg)}`);
+    });
+
+    document.getElementById('social-submit').addEventListener('click', () => {
+      const app = document.getElementById('social-app').value.trim() || "لا يوجد";
+      const service = document.getElementById('social-service').value.trim() || "لا يوجد";
+      const amount = document.getElementById('social-amount').value.trim() || "لا يوجد";
+      const notes = document.getElementById('social-notes').value.trim() || "لا يوجد";
+
+      const msg = `📱 طلب خدمة سوشيال ميديا من ZERO STORE 📱
+
+📲 التطبيق: ${app}
+🔧 الخدمة المطلوبة: ${service}
+⚡ الكمية: ${amount}
+📝 ملاحظات: ${notes}
+
+✨ نسعى دائماً لخدمتك بأسرع وقت وأفضل جودة!`;
+
+      window.open(`https://wa.me/218921571649?text=${encodeURIComponent(msg)}`);
+    });
+
+    // افتح قسم الألعاب بشكل افتراضي عند تحميل الصفحة
+    showSection('games');
+  </script>
+</body>
+</html>
