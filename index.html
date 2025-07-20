@@ -3,105 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ZERO STORE</title>
+  <title>ZERO STORE - خدمتك بسرعة الصفر</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
     body {
-      background-color: #0f172a;
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      font-family: 'Cairo', sans-serif;
+      color: #e0e7ff;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
+
     header {
-      background-color: #1e293b;
       width: 100%;
-      padding: 1rem;
+      background-color: #111827cc;
+      padding: 1.5rem 1rem;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
+
     header img {
-      max-height: 100px;
+      height: 90px;
+      filter: drop-shadow(0 0 4px #3b82f6);
+      margin-bottom: 0.3rem;
     }
-    h1 {
-      font-size: 1.8rem;
-      margin: 0.5rem 0 0;
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: 0.15em;
+      color: #3b82f6;
+      text-shadow: 0 0 12px #3b82f6;
     }
-    p {
-      margin: 0.3rem 0 0;
+
+    header p.subtitle {
+      margin-top: 0.2rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #a5b4fc;
+      text-shadow: 0 0 6px #a5b4fc;
     }
-    .btn-container {
-      margin: 2rem 0;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    button {
-      padding: 0.8rem 1.5rem;
-      background-color: #3b82f6;
-      border: none;
-      border-radius: 0.5rem;
-      color: white;
-      cursor: pointer;
+
+    header p.tagline {
       font-size: 1.1rem;
-      transition: background-color 0.3s;
+      margin-top: 0.8rem;
+      color: #60a5fa;
+      font-weight: 800;
+      text-shadow: 0 0 5px #2563eb;
     }
+
+    .btn-container {
+      margin: 3rem 0 2rem 0;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      padding: 0.9rem 2rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 5px 12px #2563ebaa;
+      transition: all 0.3s ease;
+      flex-grow: 1;
+      max-width: 220px;
+    }
+
     button:hover {
-      background-color: #2563eb;
+      background: linear-gradient(135deg, #1e40af, #2563eb);
+      box-shadow: 0 7px 16px #1e40afcc;
+      transform: translateY(-3px);
     }
+
     .form-section {
-      display: none;
-      flex-direction: column;
-      align-items: center;
+      background: #1e293bdd;
+      border-radius: 14px;
+      padding: 2rem 1.5rem 2.5rem 1.5rem;
       width: 90%;
       max-width: 420px;
-      background: #1e293b;
-      padding: 1rem 1.5rem;
-      border-radius: 0.7rem;
-      box-shadow: 0 0 15px rgba(59,130,246,0.5);
-      margin-bottom: 3rem;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 8px 20px rgba(59,130,246,0.4);
+      animation: fadeIn 0.4s ease forwards;
     }
+
     .form-section.active {
       display: flex;
     }
+
     label {
-      align-self: flex-start;
       margin-top: 1rem;
       font-weight: 600;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin-top: 0.3rem;
-      border: none;
-      border-radius: 0.4rem;
-      font-size: 1rem;
-      background-color: #334155;
-      color: white;
-    }
-    input::placeholder, textarea::placeholder {
-      color: #94a3b8;
-    }
-    a.whatsapp {
-      margin-top: 1.5rem;
-      background-color: #10b981;
-      padding: 0.9rem;
-      text-decoration: none;
-      color: white;
-      border-radius: 0.6rem;
-      display: inline-block;
-      font-weight: 700;
       font-size: 1.1rem;
-      text-align: center;
-      width: 100%;
-      box-shadow: 0 5px 10px rgba(16,185,129,0.7);
-      transition: background-color 0.3s;
+      color: #bfdbfe;
+      user-select: none;
     }
+
+    input, select, textarea {
+      margin-top: 0.3rem;
+      padding: 0.65rem 0.8rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      font-family: 'Cairo', sans-serif;
+      color: #1e293b;
+      background-color: #e0e7ff;
+      transition: box-shadow 0.25s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 8px #3b82f6;
+      background-color: #f0f9ff;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    a.whatsapp {
+      margin-top: 2rem;
+      background-color: #10b981;
+      text-align: center;
+      padding: 1rem 0;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 6px 14px #059669cc;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
     a.whatsapp:hover {
-      background-color: #0f766e;
+      background-color: #059669;
+      box-shadow: 0 8px 18px #047857dd;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(15px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      button {
+        max-width: 100%;
+      }
+      .form-section {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -109,7 +179,8 @@
   <header>
     <img src="logo.png" alt="ZERO STORE Logo" />
     <h1>ZERO STORE</h1>
-    <p>🌀 خدمتك بسرعة الصفر في شحن الألعاب والسوشيال ميديا 🔥</p>
+    <p class="subtitle">🌀 أسرع خدمات شحن الألعاب وخدمات السوشيال ميديا بأعلى جودة 🔥</p>
+    <p class="tagline">خدمتك بسرعة الصفر 🚀 استمتع بخدمة فورية وموثوقة!</p>
   </header>
 
   <div class="btn-container">
@@ -153,36 +224,40 @@
     }
 
     document.getElementById('game-submit').addEventListener('click', () => {
-      const name = document.getElementById('game-name').value.trim() || "لا يوجد";
-      const amount = document.getElementById('game-amount').value.trim() || "لا يوجد";
-      const notes = document.getElementById('game-notes').value.trim() || "لا يوجد";
-
+      const name = document.getElementById('game-name').value.trim();
+      const amount = document.getElementById('game-amount').value.trim();
+      const notes = document.getElementById('game-notes').value.trim();
+      if (!name || !amount) {
+        alert('يرجى تعبئة حقل "اختر اللعبة" و"عدد الشحنات"');
+        return;
+      }
       const msg = `🕹️ طلب شحن لعبة من ZERO STORE 🕹️
-
+      
 🎮 اللعبة: ${name}
-⚡ الكمية المطلوبة: ${amount}
-📝 ملاحظات: ${notes}
+⚡ الكمية: ${amount}
+📝 ملاحظات: ${notes || 'لا توجد'}
 
-🛒 شكراً لاختيارك ZERO STORE لخدمات الشحن السريعة!`;
-
+🛒 شكراً لاختيارك ZERO STORE - خدمتك بسرعة الصفر!`;
       window.open(`https://wa.me/218921571649?text=${encodeURIComponent(msg)}`);
     });
 
     document.getElementById('social-submit').addEventListener('click', () => {
-      const app = document.getElementById('social-app').value.trim() || "لا يوجد";
-      const service = document.getElementById('social-service').value.trim() || "لا يوجد";
-      const amount = document.getElementById('social-amount').value.trim() || "لا يوجد";
-      const notes = document.getElementById('social-notes').value.trim() || "لا يوجد";
-
+      const app = document.getElementById('social-app').value.trim();
+      const service = document.getElementById('social-service').value.trim();
+      const amount = document.getElementById('social-amount').value.trim();
+      const notes = document.getElementById('social-notes').value.trim();
+      if (!app || !service || !amount) {
+        alert('يرجى تعبئة الحقول المطلوبة في قسم السوشيال ميديا');
+        return;
+      }
       const msg = `📱 طلب خدمة سوشيال ميديا من ZERO STORE 📱
 
 📲 التطبيق: ${app}
-🔧 الخدمة المطلوبة: ${service}
+🔧 الخدمة: ${service}
 ⚡ الكمية: ${amount}
-📝 ملاحظات: ${notes}
+📝 ملاحظات: ${notes || 'لا توجد'}
 
-✨ نسعى دائماً لخدمتك بأسرع وقت وأفضل جودة!`;
-
+✨ شكراً لاختيارك ZERO STORE - خدمتك بسرعة الصفر!`;
       window.open(`https://wa.me/218921571649?text=${encodeURIComponent(msg)}`);
     });
 
